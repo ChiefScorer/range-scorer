@@ -4,9 +4,12 @@ import RecentStrings from './components/RecentStrings'
 import Leaderboard from './components/Leaderboard'
 import ExportButton from './components/ExportButton'
 import UpdateBanner from './UpdateBanner'
+import EventSelector from './components/EventSelector'
+import type { EventName } from './constants/events'
 
 export default function App() {
   const [tab, setTab] = useState<'score' | 'board'>('score')
+  const [eventName, setEventName] = useState<EventName>('Practical')
 
   return (
     <div style={{ fontFamily: 'system-ui' }}>
@@ -20,37 +23,29 @@ export default function App() {
         }}
       >
         <h1 style={{ fontSize: 18, margin: 0 }}>🏆 Range Scorer</h1>
+
+        {/* ✅ Global Event selector */}
+        <div style={{ marginLeft: 12 }}>
+          <EventSelector value={eventName} onChange={setEventName} />
+        </div>
+
         <nav style={{ marginLeft: 'auto', display: 'flex', gap: 8 }}>
-          <button
-            onClick={() => setTab('score')}
-            style={tabBtn(tab === 'score')}
-          >
-            Score
-          </button>
-          <button
-            onClick={() => setTab('board')}
-            style={tabBtn(tab === 'board')}
-          >
-            Leaderboard
-          </button>
+          <button onClick={() => setTab('score')} style={tabBtn(tab === 'score')}>Score</button>
+          <button onClick={() => setTab('board')} style={tabBtn(tab === 'board')}>Leaderboard</button>
           <ExportButton />
         </nav>
       </header>
 
       {tab === 'score' ? (
         <>
-          <ScorePad
-            compId="COMP-001"
-            compName="Demo Shooter"
-            stage="Practical"
-          />
+          {/* Pass selected Event into ScorePad (prop is still named "stage" in code/DB) */}
+          <ScorePad compId="COMP-001" compName="Demo Shooter" stage={eventName} />
           <RecentStrings />
         </>
       ) : (
         <Leaderboard />
       )}
 
-      {/* ✅ Always render the update banner at the bottom */}
       <UpdateBanner />
     </div>
   )

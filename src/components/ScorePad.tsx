@@ -69,7 +69,7 @@ export default function ScorePad({
     <div style={{maxWidth: 460, margin: '24px auto', padding: 16, fontFamily: 'system-ui'}}>
       <h2 style={{margin: '0 0 8px'}}>Score Entry</h2>
       <div style={{opacity: .8, fontSize: 14, marginBottom: 12}}>
-        Shooter: <b>{compName}</b> ({compId}) · Stage: <b>{stage}</b> · String: <b>{stringNo}</b>
+        Shooter: <b>{compName}</b> ({compId}) · Event: <b>{stage}</b> · String: <b>{stringNo}</b>
       </div>
 
       <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:12, marginBottom: 12}}>
