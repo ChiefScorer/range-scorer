@@ -1,4 +1,4 @@
-import { EVENTS, type EventName } from '../constants/events'
+import { EVENTS, type EventName } from '../constants/meta'
 
 export default function EventSelector({
   value,
